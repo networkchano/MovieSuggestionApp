@@ -51,6 +51,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(535, 80);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnSearchOnline
             // 
@@ -69,7 +70,7 @@
             this.btnSuggest.TabIndex = 2;
             this.btnSuggest.Text = "Suggest";
             this.btnSuggest.UseVisualStyleBackColor = true;
-        
+            this.btnSuggest.Click += new System.EventHandler(this.btnSuggest_Click);
             // 
             // btnAddMovie
             // 

@@ -12,6 +12,12 @@ namespace MovieSuggestionApp
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             Application.Run(new MainForm()); // Make sure MainForm is your main form class
+            public Form1()
+        {
+            InitializeComponent();
+
+            LoadMovies();
         }
+    }
     }
 }
