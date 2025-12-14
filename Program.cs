@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace MovieSuggestionApp
@@ -8,10 +8,8 @@ namespace MovieSuggestionApp
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
         }
-
     }
 }

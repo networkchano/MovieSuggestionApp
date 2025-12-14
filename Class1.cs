@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieSuggestionApp
 {
-    internal class DisplayMovies
+    internal class Class1
     {
     }
 }
