@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MovieSuggestionApp
@@ -14,12 +16,13 @@ namespace MovieSuggestionApp
         private Random _random = new();
         private string? _selectedGenre = null;
         private List<Button> _genreButtons = new();
+        private static readonly HttpClient httpClient = new HttpClient();
 
         public MainForm()
         {
             InitializeComponent();
             _movies = MovieRepository.GetMovies();
-            
+
             InitializeGenreButtons();
             UpdateWatchlistCount();
             ApplyDarkTheme();
@@ -29,22 +32,29 @@ namespace MovieSuggestionApp
         {
             this.BackColor = Color.FromArgb(10, 10, 18);
             this.ForeColor = Color.White;
-            
+
             pnlCard.BackColor = Color.FromArgb(20, 20, 25);
             pnlCard.Visible = false;
+
+            pnlDetails.BackColor = Color.Transparent;
+
+            picPoster.BackColor = Color.FromArgb(30, 30, 35);
 
             btnSuggest.BackColor = Color.FromArgb(220, 38, 38);
             btnSuggest.ForeColor = Color.White;
             btnSuggest.FlatStyle = FlatStyle.Flat;
             btnSuggest.FlatAppearance.BorderSize = 0;
-            
+
             lblHeader.ForeColor = Color.White;
+
+            btnWatchlist.FlatStyle = FlatStyle.Flat;
+            btnWatchlist.FlatAppearance.BorderSize = 0;
         }
 
         private void InitializeGenreButtons()
         {
             var genres = _movies.SelectMany(m => m.Genre).Distinct().OrderBy(g => g).ToList();
-            
+
             // "All Genres" button
             CreateGenreButton("All Genres", true);
 
@@ -64,7 +74,7 @@ namespace MovieSuggestionApp
             btn.Cursor = Cursors.Hand;
             btn.FlatStyle = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 1;
-            
+
             if (isDefault)
             {
                 SetGenreButtonActive(btn, true);
@@ -83,7 +93,7 @@ namespace MovieSuggestionApp
         {
             if (active)
             {
-                btn.BackColor = Color.FromArgb(220, 38, 38); // Red
+                btn.BackColor = Color.FromArgb(220, 38, 38);
                 btn.ForeColor = Color.White;
                 btn.FlatAppearance.BorderColor = Color.FromArgb(220, 38, 38);
             }
@@ -131,14 +141,14 @@ namespace MovieSuggestionApp
             if (pool.Count == 0) pool = _movies;
 
             Cursor = Cursors.WaitCursor;
-            System.Threading.Thread.Sleep(400); // Simulate thinking
+            System.Threading.Thread.Sleep(400);
             Cursor = Cursors.Default;
 
             _currentMovie = pool[_random.Next(pool.Count)];
             DisplayMovie(_currentMovie);
         }
 
-        private void DisplayMovie(Movie movie)
+        private async void DisplayMovie(Movie movie)
         {
             pnlCard.Visible = true;
             lblTitle.Text = movie.Title;
@@ -146,8 +156,50 @@ namespace MovieSuggestionApp
             lblMeta.Text = $"{movie.Year} • {movie.Runtime} • {movie.Director}";
             lblPlot.Text = movie.Plot;
             lblGenres.Text = string.Join(" • ", movie.Genre);
-            
+
+            // Load poster image
+            await LoadPosterAsync(movie.PosterUrl);
+
             UpdateButtonState();
+        }
+
+        private async Task LoadPosterAsync(string url)
+        {
+            try
+            {
+                // Show loading placeholder
+                picPoster.Image = null;
+                picPoster.BackColor = Color.FromArgb(30, 30, 35);
+
+                if (string.IsNullOrEmpty(url))
+                {
+                    return;
+                }
+
+                // Download image
+                var imageBytes = await httpClient.GetByteArrayAsync(url);
+                using (var ms = new System.IO.MemoryStream(imageBytes))
+                {
+                    var image = Image.FromStream(ms);
+
+                    // Update UI on the main thread
+                    if (picPoster.InvokeRequired)
+                    {
+                        picPoster.Invoke(new Action(() => picPoster.Image = image));
+                    }
+                    else
+                    {
+                        picPoster.Image = image;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // If image fails to load, show placeholder
+                picPoster.Image = null;
+                picPoster.BackColor = Color.FromArgb(40, 40, 50);
+                Console.WriteLine($"Error loading poster: {ex.Message}");
+            }
         }
 
         private void btnWatchlist_Click(object sender, EventArgs e)
@@ -162,7 +214,7 @@ namespace MovieSuggestionApp
             {
                 _watchlist.Add(_currentMovie.Id);
             }
-            
+
             UpdateButtonState();
             UpdateWatchlistCount();
         }
@@ -186,6 +238,11 @@ namespace MovieSuggestionApp
         private void UpdateWatchlistCount()
         {
             lblWatchlistCount.Text = $"Watchlist: {_watchlist.Count}";
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

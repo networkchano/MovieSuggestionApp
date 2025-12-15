@@ -19,173 +19,194 @@ namespace MovieSuggestionApp
 
         private void InitializeComponent()
         {
-            this.lblHeader = new System.Windows.Forms.Label();
-            this.flowGenres = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnSuggest = new System.Windows.Forms.Button();
-            this.pnlCard = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblRating = new System.Windows.Forms.Label();
-            this.lblGenres = new System.Windows.Forms.Label();
-            this.lblMeta = new System.Windows.Forms.Label();
-            this.lblPlot = new System.Windows.Forms.Label();
-            this.btnWatchlist = new System.Windows.Forms.Button();
-            this.lblWatchlistCount = new System.Windows.Forms.Label();
-            this.pnlCard.SuspendLayout();
-            this.SuspendLayout();
-
+            lblHeader = new Label();
+            flowGenres = new FlowLayoutPanel();
+            btnSuggest = new Button();
+            pnlCard = new Panel();
+            picPoster = new PictureBox();
+            pnlDetails = new Panel();
+            btnWatchlist = new Button();
+            lblPlot = new Label();
+            lblMeta = new Label();
+            lblGenres = new Label();
+            lblRating = new Label();
+            lblTitle = new Label();
+            lblWatchlistCount = new Label();
+            pnlCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picPoster).BeginInit();
+            pnlDetails.SuspendLayout();
+            SuspendLayout();
             // 
             // lblHeader
             // 
-            this.lblHeader.AutoSize = false;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblHeader.Location = new System.Drawing.Point(0, 20);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(800, 50);
-            this.lblHeader.TabIndex = 0;
-            this.lblHeader.Text = "CINEMOJO";
-            this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
+            lblHeader.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblHeader.Location = new Point(0, 27);
+            lblHeader.Name = "lblHeader";
+            lblHeader.Size = new Size(1029, 67);
+            lblHeader.TabIndex = 0;
+            lblHeader.Text = "CINE  SMU";
+            lblHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // flowGenres
             // 
-            this.flowGenres.Location = new System.Drawing.Point(50, 80);
-            this.flowGenres.Name = "flowGenres";
-            this.flowGenres.Size = new System.Drawing.Size(700, 60);
-            this.flowGenres.TabIndex = 1;
-            this.flowGenres.AutoScroll = true;
-            this.flowGenres.WrapContents = false; // Horizontal scroll if needed
-            this.flowGenres.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-
+            flowGenres.AutoScroll = true;
+            flowGenres.Location = new Point(114, 107);
+            flowGenres.Margin = new Padding(3, 4, 3, 4);
+            flowGenres.Name = "flowGenres";
+            flowGenres.Size = new Size(800, 80);
+            flowGenres.TabIndex = 1;
+            flowGenres.WrapContents = false;
             // 
             // btnSuggest
             // 
-            this.btnSuggest.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.btnSuggest.Location = new System.Drawing.Point(250, 160);
-            this.btnSuggest.Name = "btnSuggest";
-            this.btnSuggest.Size = new System.Drawing.Size(300, 50);
-            this.btnSuggest.TabIndex = 2;
-            this.btnSuggest.Text = "Suggest a Movie";
-            this.btnSuggest.UseVisualStyleBackColor = true;
-            this.btnSuggest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSuggest.Click += new System.EventHandler(this.btnSuggest_Click);
-
+            btnSuggest.Cursor = Cursors.Hand;
+            btnSuggest.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnSuggest.Location = new Point(343, 213);
+            btnSuggest.Margin = new Padding(3, 4, 3, 4);
+            btnSuggest.Name = "btnSuggest";
+            btnSuggest.Size = new Size(343, 67);
+            btnSuggest.TabIndex = 2;
+            btnSuggest.Text = "Suggest a Movie";
+            btnSuggest.UseVisualStyleBackColor = true;
+            btnSuggest.Click += btnSuggest_Click;
             // 
             // pnlCard
             // 
-            this.pnlCard.Controls.Add(this.btnWatchlist);
-            this.pnlCard.Controls.Add(this.lblPlot);
-            this.pnlCard.Controls.Add(this.lblMeta);
-            this.pnlCard.Controls.Add(this.lblGenres);
-            this.pnlCard.Controls.Add(this.lblRating);
-            this.pnlCard.Controls.Add(this.lblTitle);
-            this.pnlCard.Location = new System.Drawing.Point(100, 230);
-            this.pnlCard.Name = "pnlCard";
-            this.pnlCard.Size = new System.Drawing.Size(600, 320);
-            this.pnlCard.TabIndex = 3;
-
+            pnlCard.Controls.Add(picPoster);
+            pnlCard.Controls.Add(pnlDetails);
+            pnlCard.Location = new Point(57, 307);
+            pnlCard.Margin = new Padding(3, 4, 3, 4);
+            pnlCard.Name = "pnlCard";
+            pnlCard.Size = new Size(914, 480);
+            pnlCard.TabIndex = 3;
             // 
-            // lblTitle
+            // picPoster
             // 
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(20, 20);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(460, 40);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Movie Title";
-
+            picPoster.Location = new Point(23, 27);
+            picPoster.Margin = new Padding(3, 4, 3, 4);
+            picPoster.Name = "picPoster";
+            picPoster.Size = new Size(229, 400);
+            picPoster.SizeMode = PictureBoxSizeMode.Zoom;
+            picPoster.TabIndex = 0;
+            picPoster.TabStop = false;
             // 
-            // lblRating
+            // pnlDetails
             // 
-            this.lblRating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.lblRating.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblRating.ForeColor = System.Drawing.Color.White;
-            this.lblRating.Location = new System.Drawing.Point(500, 20);
-            this.lblRating.Name = "lblRating";
-            this.lblRating.Size = new System.Drawing.Size(80, 40);
-            this.lblRating.TabIndex = 1;
-            this.lblRating.Text = "8.5";
-            this.lblRating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-            // 
-            // lblGenres
-            // 
-            this.lblGenres.AutoSize = true;
-            this.lblGenres.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic);
-            this.lblGenres.ForeColor = System.Drawing.Color.Gray;
-            this.lblGenres.Location = new System.Drawing.Point(25, 70);
-            this.lblGenres.Name = "lblGenres";
-            this.lblGenres.Size = new System.Drawing.Size(100, 19);
-            this.lblGenres.TabIndex = 2;
-            this.lblGenres.Text = "Action • Sci-Fi";
-
-            // 
-            // lblMeta
-            // 
-            this.lblMeta.AutoSize = true;
-            this.lblMeta.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblMeta.Location = new System.Drawing.Point(25, 100);
-            this.lblMeta.Name = "lblMeta";
-            this.lblMeta.Size = new System.Drawing.Size(200, 19);
-            this.lblMeta.TabIndex = 3;
-            this.lblMeta.Text = "2010 • 148 min • Christopher Nolan";
-
-            // 
-            // lblPlot
-            // 
-            this.lblPlot.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblPlot.Location = new System.Drawing.Point(25, 140);
-            this.lblPlot.Name = "lblPlot";
-            this.lblPlot.Size = new System.Drawing.Size(550, 100);
-            this.lblPlot.TabIndex = 4;
-            this.lblPlot.Text = "Plot description goes here...";
-
+            pnlDetails.Controls.Add(btnWatchlist);
+            pnlDetails.Controls.Add(lblPlot);
+            pnlDetails.Controls.Add(lblMeta);
+            pnlDetails.Controls.Add(lblGenres);
+            pnlDetails.Controls.Add(lblRating);
+            pnlDetails.Controls.Add(lblTitle);
+            pnlDetails.Location = new Point(274, 27);
+            pnlDetails.Margin = new Padding(3, 4, 3, 4);
+            pnlDetails.Name = "pnlDetails";
+            pnlDetails.Size = new Size(617, 427);
+            pnlDetails.TabIndex = 1;
             // 
             // btnWatchlist
             // 
-            this.btnWatchlist.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnWatchlist.Location = new System.Drawing.Point(25, 250);
-            this.btnWatchlist.Name = "btnWatchlist";
-            this.btnWatchlist.Size = new System.Drawing.Size(550, 45);
-            this.btnWatchlist.TabIndex = 5;
-            this.btnWatchlist.Text = "Add to Watchlist";
-            this.btnWatchlist.UseVisualStyleBackColor = true;
-            this.btnWatchlist.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWatchlist.Click += new System.EventHandler(this.btnWatchlist_Click);
-
+            btnWatchlist.Cursor = Cursors.Hand;
+            btnWatchlist.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnWatchlist.Location = new Point(17, 340);
+            btnWatchlist.Margin = new Padding(3, 4, 3, 4);
+            btnWatchlist.Name = "btnWatchlist";
+            btnWatchlist.Size = new Size(583, 60);
+            btnWatchlist.TabIndex = 5;
+            btnWatchlist.Text = "+ Add to Watchlist";
+            btnWatchlist.UseVisualStyleBackColor = true;
+            btnWatchlist.Click += btnWatchlist_Click;
+            // 
+            // lblPlot
+            // 
+            lblPlot.Font = new Font("Segoe UI", 10F);
+            lblPlot.Location = new Point(17, 160);
+            lblPlot.Name = "lblPlot";
+            lblPlot.Size = new Size(583, 160);
+            lblPlot.TabIndex = 4;
+            lblPlot.Text = "Plot description goes here...";
+            // 
+            // lblMeta
+            // 
+            lblMeta.AutoSize = true;
+            lblMeta.Font = new Font("Segoe UI", 10F);
+            lblMeta.Location = new Point(17, 107);
+            lblMeta.Name = "lblMeta";
+            lblMeta.Size = new Size(281, 23);
+            lblMeta.TabIndex = 3;
+            lblMeta.Text = "2010 • 148 min • Christopher Nolan";
+            // 
+            // lblGenres
+            // 
+            lblGenres.AutoSize = true;
+            lblGenres.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            lblGenres.ForeColor = Color.Gray;
+            lblGenres.Location = new Point(17, 67);
+            lblGenres.Name = "lblGenres";
+            lblGenres.Size = new Size(112, 23);
+            lblGenres.TabIndex = 2;
+            lblGenres.Text = "Action • Sci-Fi";
+            // 
+            // lblRating
+            // 
+            lblRating.BackColor = Color.FromArgb(220, 38, 38);
+            lblRating.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblRating.ForeColor = Color.White;
+            lblRating.Location = new Point(503, 0);
+            lblRating.Name = "lblRating";
+            lblRating.Size = new Size(91, 53);
+            lblRating.TabIndex = 1;
+            lblRating.Text = "8.5";
+            lblRating.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.Location = new Point(11, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(457, 53);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Movie Title";
             // 
             // lblWatchlistCount
             // 
-            this.lblWatchlistCount.AutoSize = true;
-            this.lblWatchlistCount.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblWatchlistCount.Location = new System.Drawing.Point(650, 580);
-            this.lblWatchlistCount.Name = "lblWatchlistCount";
-            this.lblWatchlistCount.Size = new System.Drawing.Size(83, 19);
-            this.lblWatchlistCount.TabIndex = 4;
-            this.lblWatchlistCount.Text = "Watchlist: 0";
-
+            lblWatchlistCount.AutoSize = true;
+            lblWatchlistCount.Font = new Font("Segoe UI", 10F);
+            lblWatchlistCount.Location = new Point(857, 813);
+            lblWatchlistCount.Name = "lblWatchlistCount";
+            lblWatchlistCount.Size = new Size(97, 23);
+            lblWatchlistCount.TabIndex = 4;
+            lblWatchlistCount.Text = "Watchlist: 0";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 620);
-            this.Controls.Add(this.lblWatchlistCount);
-            this.Controls.Add(this.pnlCard);
-            this.Controls.Add(this.btnSuggest);
-            this.Controls.Add(this.flowGenres);
-            this.Controls.Add(this.lblHeader);
-            this.Name = "MainForm";
-            this.Text = "CineMojo";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.pnlCard.ResumeLayout(false);
-            this.pnlCard.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1029, 867);
+            Controls.Add(lblWatchlistCount);
+            Controls.Add(pnlCard);
+            Controls.Add(btnSuggest);
+            Controls.Add(flowGenres);
+            Controls.Add(lblHeader);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Cine SMU";
+            Load += MainForm_Load;
+            pnlCard.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picPoster).EndInit();
+            pnlDetails.ResumeLayout(false);
+            pnlDetails.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.FlowLayoutPanel flowGenres;
         private System.Windows.Forms.Button btnSuggest;
         private System.Windows.Forms.Panel pnlCard;
+        private System.Windows.Forms.PictureBox picPoster;
+        private System.Windows.Forms.Panel pnlDetails;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblRating;
         private System.Windows.Forms.Label lblGenres;
