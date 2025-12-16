@@ -36,9 +36,7 @@ namespace MovieSuggestionApp
             ((System.ComponentModel.ISupportInitialize)picPoster).BeginInit();
             pnlDetails.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblHeader
-            // 
+           
             lblHeader.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblHeader.Location = new Point(0, 27);
             lblHeader.Name = "lblHeader";
@@ -46,9 +44,7 @@ namespace MovieSuggestionApp
             lblHeader.TabIndex = 0;
             lblHeader.Text = "CINE  SMU";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // flowGenres
-            // 
+           
             flowGenres.AutoScroll = true;
             flowGenres.Location = new Point(114, 107);
             flowGenres.Margin = new Padding(3, 4, 3, 4);
@@ -56,9 +52,7 @@ namespace MovieSuggestionApp
             flowGenres.Size = new Size(800, 80);
             flowGenres.TabIndex = 1;
             flowGenres.WrapContents = false;
-            // 
-            // btnSuggest
-            // 
+           
             btnSuggest.Cursor = Cursors.Hand;
             btnSuggest.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnSuggest.Location = new Point(343, 213);
@@ -69,9 +63,7 @@ namespace MovieSuggestionApp
             btnSuggest.Text = "Suggest a Movie";
             btnSuggest.UseVisualStyleBackColor = true;
             btnSuggest.Click += btnSuggest_Click;
-            // 
-            // pnlCard
-            // 
+           
             pnlCard.Controls.Add(picPoster);
             pnlCard.Controls.Add(pnlDetails);
             pnlCard.Location = new Point(57, 307);
@@ -79,9 +71,7 @@ namespace MovieSuggestionApp
             pnlCard.Name = "pnlCard";
             pnlCard.Size = new Size(914, 480);
             pnlCard.TabIndex = 3;
-            // 
-            // picPoster
-            // 
+           
             picPoster.Location = new Point(23, 27);
             picPoster.Margin = new Padding(3, 4, 3, 4);
             picPoster.Name = "picPoster";
@@ -89,9 +79,7 @@ namespace MovieSuggestionApp
             picPoster.SizeMode = PictureBoxSizeMode.Zoom;
             picPoster.TabIndex = 0;
             picPoster.TabStop = false;
-            // 
-            // pnlDetails
-            // 
+           
             pnlDetails.Controls.Add(btnWatchlist);
             pnlDetails.Controls.Add(lblPlot);
             pnlDetails.Controls.Add(lblMeta);
@@ -103,9 +91,7 @@ namespace MovieSuggestionApp
             pnlDetails.Name = "pnlDetails";
             pnlDetails.Size = new Size(617, 427);
             pnlDetails.TabIndex = 1;
-            // 
-            // btnWatchlist
-            // 
+           
             btnWatchlist.Cursor = Cursors.Hand;
             btnWatchlist.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnWatchlist.Location = new Point(17, 340);
@@ -116,18 +102,14 @@ namespace MovieSuggestionApp
             btnWatchlist.Text = "+ Add to Watchlist";
             btnWatchlist.UseVisualStyleBackColor = true;
             btnWatchlist.Click += btnWatchlist_Click;
-            // 
-            // lblPlot
-            // 
+            
             lblPlot.Font = new Font("Segoe UI", 10F);
             lblPlot.Location = new Point(17, 160);
             lblPlot.Name = "lblPlot";
             lblPlot.Size = new Size(583, 160);
             lblPlot.TabIndex = 4;
             lblPlot.Text = "Plot description goes here...";
-            // 
-            // lblMeta
-            // 
+           
             lblMeta.AutoSize = true;
             lblMeta.Font = new Font("Segoe UI", 10F);
             lblMeta.Location = new Point(17, 107);
@@ -135,9 +117,7 @@ namespace MovieSuggestionApp
             lblMeta.Size = new Size(281, 23);
             lblMeta.TabIndex = 3;
             lblMeta.Text = "2010 • 148 min • Christopher Nolan";
-            // 
-            // lblGenres
-            // 
+           
             lblGenres.AutoSize = true;
             lblGenres.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
             lblGenres.ForeColor = Color.Gray;
@@ -146,9 +126,7 @@ namespace MovieSuggestionApp
             lblGenres.Size = new Size(112, 23);
             lblGenres.TabIndex = 2;
             lblGenres.Text = "Action • Sci-Fi";
-            // 
-            // lblRating
-            // 
+           
             lblRating.BackColor = Color.FromArgb(220, 38, 38);
             lblRating.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblRating.ForeColor = Color.White;
@@ -158,18 +136,14 @@ namespace MovieSuggestionApp
             lblRating.TabIndex = 1;
             lblRating.Text = "8.5";
             lblRating.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblTitle
-            // 
+            
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lblTitle.Location = new Point(11, 0);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(457, 53);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Movie Title";
-            // 
-            // lblWatchlistCount
-            // 
+            
             lblWatchlistCount.AutoSize = true;
             lblWatchlistCount.Font = new Font("Segoe UI", 10F);
             lblWatchlistCount.Location = new Point(857, 813);
@@ -177,9 +151,7 @@ namespace MovieSuggestionApp
             lblWatchlistCount.Size = new Size(97, 23);
             lblWatchlistCount.TabIndex = 4;
             lblWatchlistCount.Text = "Watchlist: 0";
-            // 
-            // MainForm
-            // 
+            
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1029, 867);

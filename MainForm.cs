@@ -32,7 +32,7 @@ namespace MovieSuggestionApp
             this.FormBorderStyle = FormBorderStyle.None;
             this.TopMost = false;
 
-            // Initialize the all movies panel
+          
             InitializeAllMoviesPanel();
             InitializeWatchlistButton();
             InitializeBackButton();
@@ -41,11 +41,10 @@ namespace MovieSuggestionApp
             UpdateWatchlistCount();
             ApplyDarkTheme();
 
-            // Adjust layout for fullscreen
+       
             this.Resize += MainForm_Resize;
             AdjustLayoutForFullscreen();
 
-            // Display all movies initially
             DisplayAllMoviesByGenre();
         }
 
@@ -112,7 +111,6 @@ namespace MovieSuggestionApp
             pnlCard.Visible = false;
             btnBackToMain.Visible = true;
 
-            // Hide genre buttons and suggest button when viewing watchlist
             flowGenres.Visible = false;
             btnSuggest.Visible = false;
 
@@ -133,7 +131,7 @@ namespace MovieSuggestionApp
             }
             else
             {
-                // Title
+              
                 var lblTitle = new Label();
                 lblTitle.Text = $"My Watchlist ({watchlistMovies.Count} movies)";
                 lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
@@ -144,7 +142,6 @@ namespace MovieSuggestionApp
                 lblTitle.Padding = new Padding(10, 10, 0, 0);
                 flowAllMovies.Controls.Add(lblTitle);
 
-                // Movie grid
                 var movieFlow = new FlowLayoutPanel();
                 movieFlow.FlowDirection = FlowDirection.LeftToRight;
                 movieFlow.WrapContents = true;
@@ -173,7 +170,7 @@ namespace MovieSuggestionApp
             card.Margin = new Padding(10);
             card.Tag = movie;
 
-            // Poster
+            
             var pic = new PictureBox();
             pic.Width = 200;
             pic.Height = 250;
@@ -182,10 +179,8 @@ namespace MovieSuggestionApp
             pic.Location = new Point(0, 0);
             card.Controls.Add(pic);
 
-            // Load poster asynchronously
             LoadMovieCardPoster(pic, movie.PosterUrl);
 
-            // Title
             var lblTitle = new Label();
             lblTitle.Text = movie.Title;
             lblTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -197,7 +192,6 @@ namespace MovieSuggestionApp
             lblTitle.Location = new Point(0, 250);
             card.Controls.Add(lblTitle);
 
-            // Remove button
             var btnRemove = new Button();
             btnRemove.Text = "✕ Remove";
             btnRemove.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
@@ -212,11 +206,10 @@ namespace MovieSuggestionApp
             btnRemove.Click += (s, e) => {
                 _watchlist.Remove(movie.Id);
                 UpdateWatchlistCount();
-                ShowWatchlist(); // Refresh the watchlist view
+                ShowWatchlist();
             };
             card.Controls.Add(btnRemove);
 
-            // Rating badge
             var lblRating = new Label();
             lblRating.Text = $"★ {movie.Rating}";
             lblRating.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -228,7 +221,6 @@ namespace MovieSuggestionApp
             card.Controls.Add(lblRating);
             lblRating.BringToFront();
 
-            // Click event to show full details
             card.Click += (s, e) => ShowMovieDetails(movie);
             pic.Click += (s, e) => ShowMovieDetails(movie);
             lblTitle.Click += (s, e) => ShowMovieDetails(movie);
@@ -257,43 +249,35 @@ namespace MovieSuggestionApp
             int screenWidth = this.ClientSize.Width;
             int screenHeight = this.ClientSize.Height;
 
-            // Header - centered at top
             lblHeader.Width = screenWidth;
             lblHeader.Location = new Point(0, 40);
             lblHeader.Height = 80;
 
-            // View Watchlist button - top right
             btnViewWatchlist.Location = new Point(screenWidth - 220, 50);
 
-            // Back to Main button - top left
             btnBackToMain.Location = new Point(20, 50);
 
-            // Genre buttons - centered below header
             int genreFlowWidth = Math.Min(1000, screenWidth - 100);
             flowGenres.Width = genreFlowWidth;
             flowGenres.Location = new Point((screenWidth - genreFlowWidth) / 2, 140);
             flowGenres.Height = 80;
 
-            // Suggest button - centered
             int btnSuggestWidth = 400;
             btnSuggest.Width = btnSuggestWidth;
             btnSuggest.Location = new Point((screenWidth - btnSuggestWidth) / 2, 240);
             btnSuggest.Height = 70;
 
-            // All movies panel - below suggest button
             int moviesWidth = Math.Min(1400, screenWidth - 100);
             flowAllMovies.Width = moviesWidth;
             flowAllMovies.Height = screenHeight - 380;
             flowAllMovies.Location = new Point((screenWidth - moviesWidth) / 2, 330);
 
-            // Movie card panel - centered with responsive sizing (hidden by default)
             int cardWidth = Math.Min(1200, screenWidth - 100);
             int cardHeight = Math.Min(600, screenHeight - 450);
             pnlCard.Width = cardWidth;
             pnlCard.Height = cardHeight;
             pnlCard.Location = new Point((screenWidth - cardWidth) / 2, 330);
 
-            // Adjust poster and details within card
             if (pnlCard.Visible)
             {
                 picPoster.Location = new Point(30, 30);
@@ -304,16 +288,13 @@ namespace MovieSuggestionApp
                 pnlDetails.Width = cardWidth - 380;
                 pnlDetails.Height = cardHeight - 60;
 
-                // Adjust button position within details
                 btnWatchlist.Width = pnlDetails.Width - 40;
                 btnWatchlist.Location = new Point(20, pnlDetails.Height - 80);
 
-                // Adjust plot label size
                 lblPlot.Width = pnlDetails.Width - 40;
                 lblPlot.Height = pnlDetails.Height - 260;
             }
 
-            // Watchlist count - bottom right
             lblWatchlistCount.Location = new Point(screenWidth - 200, screenHeight - 50);
         }
 
@@ -323,14 +304,12 @@ namespace MovieSuggestionApp
             flowAllMovies.Visible = true;
             pnlCard.Visible = false;
 
-            // Get movies to display based on selected genre
             var moviesToDisplay = _movies;
             if (!string.IsNullOrEmpty(_selectedGenre))
             {
                 moviesToDisplay = _movies.Where(m => m.Genre.Contains(_selectedGenre)).ToList();
             }
 
-            // Group movies by genre
             var genreGroups = moviesToDisplay
                 .SelectMany(m => m.Genre.Select(g => new { Genre = g, Movie = m }))
                 .GroupBy(x => x.Genre)
@@ -338,7 +317,6 @@ namespace MovieSuggestionApp
 
             if (!string.IsNullOrEmpty(_selectedGenre))
             {
-                // If a specific genre is selected, just show that genre
                 var filteredGroup = genreGroups.FirstOrDefault(g => g.Key == _selectedGenre);
                 if (filteredGroup != null)
                 {
@@ -347,7 +325,7 @@ namespace MovieSuggestionApp
             }
             else
             {
-                // Show all genres
+
                 foreach (var genreGroup in genreGroups)
                 {
                     var moviesInGenre = genreGroup.Select(x => x.Movie).Distinct().ToList();
@@ -358,7 +336,6 @@ namespace MovieSuggestionApp
 
         private void CreateGenreSection(string genreName, List<Movie> movies)
         {
-            // Genre title
             var lblGenreTitle = new Label();
             lblGenreTitle.Text = genreName;
             lblGenreTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
@@ -369,7 +346,6 @@ namespace MovieSuggestionApp
             lblGenreTitle.Padding = new Padding(10, 10, 0, 0);
             flowAllMovies.Controls.Add(lblGenreTitle);
 
-            // Horizontal scroll panel for movies
             var movieFlow = new FlowLayoutPanel();
             movieFlow.FlowDirection = FlowDirection.LeftToRight;
             movieFlow.WrapContents = false;
@@ -397,7 +373,6 @@ namespace MovieSuggestionApp
             card.Margin = new Padding(5);
             card.Tag = movie;
 
-            // Poster
             var pic = new PictureBox();
             pic.Width = 200;
             pic.Height = 250;
@@ -406,10 +381,8 @@ namespace MovieSuggestionApp
             pic.Location = new Point(0, 0);
             card.Controls.Add(pic);
 
-            // Load poster asynchronously
             LoadMovieCardPoster(pic, movie.PosterUrl);
 
-            // Title overlay
             var lblTitle = new Label();
             lblTitle.Text = movie.Title;
             lblTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -421,7 +394,6 @@ namespace MovieSuggestionApp
             lblTitle.Location = new Point(0, 250);
             card.Controls.Add(lblTitle);
 
-            // Rating badge
             var lblRating = new Label();
             lblRating.Text = $"★ {movie.Rating}";
             lblRating.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -433,7 +405,6 @@ namespace MovieSuggestionApp
             card.Controls.Add(lblRating);
             lblRating.BringToFront();
 
-            // Watchlist indicator if movie is in watchlist
             if (_watchlist.Contains(movie.Id))
             {
                 var lblInWatchlist = new Label();
@@ -449,7 +420,6 @@ namespace MovieSuggestionApp
                 lblInWatchlist.BringToFront();
             }
 
-            // Click event to show full details
             card.Click += (s, e) => ShowMovieDetails(movie);
             pic.Click += (s, e) => ShowMovieDetails(movie);
             lblTitle.Click += (s, e) => ShowMovieDetails(movie);
@@ -479,7 +449,7 @@ namespace MovieSuggestionApp
             }
             catch
             {
-                // Silently fail
+                
             }
         }
 
@@ -523,10 +493,8 @@ namespace MovieSuggestionApp
         {
             var genres = _movies.SelectMany(m => m.Genre).Distinct().OrderBy(g => g).ToList();
 
-            // "All Genres" button
             CreateGenreButton("All Genres", true);
 
-            // Individual genre buttons
             foreach (var genre in genres)
             {
                 CreateGenreButton(genre, false);
@@ -579,13 +547,11 @@ namespace MovieSuggestionApp
         {
             if (sender is Button clickedBtn)
             {
-                // Reset all buttons
                 foreach (var btn in _genreButtons)
                 {
                     SetGenreButtonActive(btn, false);
                 }
 
-                // Activate clicked button
                 SetGenreButtonActive(clickedBtn, true);
 
                 if (clickedBtn.Text == "All Genres")
@@ -597,7 +563,6 @@ namespace MovieSuggestionApp
                     _selectedGenre = clickedBtn.Text;
                 }
 
-                // Refresh the movie display
                 DisplayAllMoviesByGenre();
             }
         }
@@ -633,10 +598,8 @@ namespace MovieSuggestionApp
             lblPlot.Text = movie.Plot;
             lblGenres.Text = string.Join(" • ", movie.Genre);
 
-            // Adjust layout after making card visible
             AdjustLayoutForFullscreen();
 
-            // Load poster image
             await LoadPosterAsync(movie.PosterUrl);
 
             UpdateButtonState();
@@ -646,7 +609,6 @@ namespace MovieSuggestionApp
         {
             try
             {
-                // Show loading placeholder
                 picPoster.Image = null;
                 picPoster.BackColor = Color.FromArgb(30, 30, 35);
 
@@ -674,7 +636,6 @@ namespace MovieSuggestionApp
             }
             catch (Exception ex)
             {
-                // If image fails to load, show placeholder
                 picPoster.Image = null;
                 picPoster.BackColor = Color.FromArgb(40, 40, 50);
                 Console.WriteLine($"Error loading poster: {ex.Message}");
@@ -725,7 +686,7 @@ namespace MovieSuggestionApp
             AdjustLayoutForFullscreen();
         }
 
-        // Add keyboard shortcuts
+     
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -743,7 +704,7 @@ namespace MovieSuggestionApp
             }
             else if (keyData == Keys.W && (Control.ModifierKeys & Keys.Control) == Keys.Control)
             {
-                // Ctrl+W to view watchlist
+                
                 ShowWatchlist();
                 return true;
             }
